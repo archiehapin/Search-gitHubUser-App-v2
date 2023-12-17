@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { createContext, useContext, useReducer } from "react";
 import searchReducer, { initialState } from "./searchReducer";
 
@@ -38,6 +39,7 @@ const SearchProvider = ({ children }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useSearch = () => {
   const context = useContext(SearchContext);
 

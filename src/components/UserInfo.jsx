@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Location from "./icons/LocationIcon";
 import WebsiteIcon from "./icons/WebsiteIcon";
 import TwitterIcon from "./icons/TwitterIcon";
@@ -11,7 +11,7 @@ const UserInfo = () => {
   const { isPending, hasError, searchData, pending, error, search, data } =
     useSearch();
 
-  const searchUrl = `http://api.github.com/users/${search}`;
+  const searchUrl = `https://api.github.com/users/${search}`;
 
   useEffect(() => {
     isPending(true);
@@ -26,11 +26,11 @@ const UserInfo = () => {
           hasError("Not Found");
         }
       })
-      .catch((err) => {
+      .catch(() => {
         hasError("Something went wrong");
         isPending(false);
       });
-  }, [search]);
+  }, [hasError, isPending, search, searchData, searchUrl]);
 
   const datas = [
     { title: "Repos", value: data?.public_repos ? data?.public_repos : 0 },
