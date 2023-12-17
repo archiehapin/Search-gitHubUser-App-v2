@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import Location from "./icons/LocationIcon";
 import WebsiteIcon from "./icons/WebsiteIcon";
@@ -30,7 +31,7 @@ const UserInfo = () => {
         hasError("Something went wrong");
         isPending(false);
       });
-  }, [hasError, isPending, search, searchData, searchUrl]);
+  }, [search]);
 
   const datas = [
     { title: "Repos", value: data?.public_repos ? data?.public_repos : 0 },
@@ -89,44 +90,27 @@ const UserInfo = () => {
     return <Loading />;
   }
 
-  // if (error) {
-  //   return (
-  //     <div className="flex justify-center">
-  //       <div className="mt-8 text-left text-[#4b6a9b] dark:text-slate-50">
-  //         <h1 className="flex flex-row">
-  //           <span className="animate-bounce">
-  //             <SadImojiIcon
-  //               size={25}
-  //               fill={"#4b6a9b"}
-  //               darkFill={"dark:fill-[#fefefe]"}
-  //             />
-  //           </span>
+  if (error) {
+    return (
+      <div className="flex justify-center">
+        <div className="mt-8 text-left text-[#4b6a9b] dark:text-slate-50">
+          <h1 className="flex flex-row">
+            <span className="animate-bounce">
+              <SadImojiIcon
+                size={25}
+                fill={"#4b6a9b"}
+                darkFill={"dark:fill-[#fefefe]"}
+              />
+            </span>
 
-  //           <span className="pl-2">{error}</span>
-  //         </h1>
-  //       </div>
-  //     </div>
-  //   );
-  // }
+            <span className="pl-2">{error}</span>
+          </h1>
+        </div>
+      </div>
+    );
+  }
   return (
     <>
-      {error && (
-        <div className="flex justify-center">
-          <div className="mt-[20px] text-left text-[#4b6a9b] dark:text-slate-50">
-            <h1 className="flex flex-row">
-              <span className="animate-bounce">
-                <SadImojiIcon
-                  size={25}
-                  fill={"#4b6a9b"}
-                  darkFill={"dark:fill-[#fefefe]"}
-                />
-              </span>
-
-              <span className="pl-2">{error}</span>
-            </h1>
-          </div>
-        </div>
-      )}
       <div className="mt-6 w-full rounded-[15px] bg-[#fefefe] p-6 text-[.78rem] text-[#4b6a9b] shadow-lg dark:bg-[#1E2A47] dark:text-[#fff] md:p-10 md:text-lg">
         <div className="grid grid-cols-3 gap-3 md:row-span-3 md:grid-cols-5">
           <div className="h-[70px] w-[70px] items-center md:h-[117px] md:w-[117px]">
